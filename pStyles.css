@@ -1,0 +1,78 @@
+/* styles.css */
+
+/* Reset some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f6f9fc, #ddeffd);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container {
+    background: #ffffff;
+    padding: 20px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    height: 90%;
+    text-align: center;
+  }
+  
+  .container h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #d32f2f; /* Red color for heading */
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  form input {
+    margin: 10px 0;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+  }
+  
+  form input:focus {
+    border-color: #d32f2f;
+    box-shadow: 0 0 8px rgba(211, 47, 47, 0.3);
+  }
+  
+  button {
+    background: #d32f2f;
+    color: white;
+    border: none;
+    padding: 14px;
+    margin-top: 15px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.4s;
+  }
+  
+  button:hover {
+    background: #b71c1c;
+  }
+  
+  #message {
+    margin-top: 20px;
+    font-size: 16px;
+    color: green;
+  }
+  
