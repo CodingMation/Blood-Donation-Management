@@ -58,10 +58,13 @@ $conn->close();
             <button type="submit" name="donate">Donate Blood</button>
         </form>
     </div>
-    <script>
-        function handleform(){
-            document.querySelector('form').reset();
-        }
+<script>
+window.onload = () => {
+if (performance.navigation.type === 2) {
+    // Page was accessed by back/forward navigation
+    document.querySelector('form').reset();
+}
+};
 </script>
 
 </body>
