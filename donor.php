@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -11,28 +11,50 @@ if (!$conn) {
     die("Connection failed: ".mysqli_connect_error());
 }
 
-$insert = false;
-if(isset($_POST['donate'])){
+if($_SERVER['REQUEST_METHOD']=='POST'
+    &&isset($_POST['donate'])
+  )
+{
 
     $name = $_POST['name'];
     $email = $_POST['email'];
     $bloodType = $_POST['bloodType'];
     $phone = $_POST['phone'];
 
+   if(!isDonorExist($conn, $email)){
     $sql = "INSERT INTO donors (`name`, `email`, `blood_type`, `phone`) 
-            VALUES ('$name', '$email', '$bloodType', '$phone')";
+    VALUES ('$name', '$email', '$bloodType', '$phone')";
+    $result = mysqli_query($conn, $sql);
+    addDonor($result, $name);
+    }else if(isDonorExist($conn, $email)){
+    $_SESSION['donor_name_exist'] = $name;
+    header("Location: ./thankyou.php");
+    exit();
+   }else{
+    echo 'Due to some err Form not filled!';
+    sleep(2);
+    header("Location: ./design.html");
+   }
 
-    if($conn->query($sql) == true){
-        $_POST = array();
-        header("Location: ./thankyou.html");
+   
+}
+
+function isDonorExist($conn, $email){
+    $donor_sql = "SELECT * FROM donors WHERE email = '$email'";
+    $donor_exist_result = mysqli_query($conn, $donor_sql);
+    return mysqli_num_rows($donor_exist_result);
+}
+
+function addDonor($result, $name){
+    if($result){
+        $_SESSION['donor_name'] = $name;
+        header("Location: ./thankyou.php");
         exit();
     }
     else{
-        echo "Error: $sql <br> $conn->error";
+        echo "Error: something wrong!";
     }
 }
-
-$conn->close();
 
 ?>
 
